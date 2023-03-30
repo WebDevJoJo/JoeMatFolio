@@ -1,0 +1,106 @@
+<div class="container-fluid text-center my-5 p-5">
+  <h1 class="m-5 p-5">Contact Us</h1>
+  <div class="container">
+    <p class="fs-5">Do you want to know how we or the web works?</p>
+    <p class="fs-5">Do you have any ideas or suggestions for us or our site?</p>
+    <p class="fs-5">
+      You had a project in mind for a while and you would like to see it done so
+      that everyone can see and use it?
+    </p>
+    <p class="fs-5">
+      Send us a message by writing it below, together with your email address.
+    </p>
+    <p class="fw-bold fs-4">We'll answer you very soon!</p>
+    <div class="row justify-content-center mt-5">
+      <div class="col-auto">
+        <div class="input-group my-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="username"
+            aria-label="Username"
+            name="username"
+            [(ngModel)]="username"
+          />
+          <span class="input-group-text">@</span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="server.domain"
+            aria-label="Server"
+            name="domain"
+            [(ngModel)]="domain"
+          />
+        </div>
+        <form class="form-floating my-2">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInputValue"
+            placeholder="Subject"
+            name="Subject"
+            [(ngModel)]="subject"
+          />
+          <label for="floatingInputValue">Subject of your message</label>
+        </form>
+        <div class="input-group my-2">
+          <span class="input-group-text">Message</span>
+          <textarea
+            class="form-control"
+            aria-label="With textarea"
+            placeholder="write your message here"
+            name="usaremessage"
+            [(ngModel)]="usermessage"
+          ></textarea>
+        </div>
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#infoModal"
+          (click)="showinfo()"
+        >
+          Send it
+        </button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="infoModal"
+          tabindex="-1"
+          aria-labelledby="infoModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="infoModalLabel"></h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                Thanks! Your message:
+                {{ message }}
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

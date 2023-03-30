@@ -1,0 +1,289 @@
+<div class="container-fluid my-5 p-5">
+  <h1 class="text-center m-5 pt-5">Calculate a preventive</h1>
+  <div class="container">
+    <div class="row py-5 justify-content-around">
+      <div class="col m-5 px-5 text-center">
+        <h4>Personal informations</h4>
+        <div class="form-floating m-3">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="username@domainexample.com"
+            [(ngModel)]="email"
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating m-3">
+          <input
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Your name"
+            [(ngModel)]="fullname"
+          />
+          <label for="floatingPassword">Full name</label>
+        </div>
+        <section class="m-3">
+          <form class="row justify-content-center">
+            <label for="date" class="col-form-label text-light">Date</label>
+            <div class="col-auto">
+              <div class="input-group date">
+                <input
+                  name="date"
+                  type="date"
+                  class="form-control"
+                  [(ngModel)]="date"
+                />
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="col mt-5 px-5">
+        <div class="form-check form-switch mb-4">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckChecked"
+            value="50"
+            [(ngModel)]="urlModel"
+            [(ngModel)]="urlToCalc"
+          />
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >When it is on, domain is needed</label
+          >
+        </div>
+        <div class="mb-5" [class.invisible]="!this.urlModel">
+          <label for="basic-url" class="form-label">Choose an URL</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">https://</span>
+            <input
+              type="text"
+              class="form-control"
+              id="basic-url"
+              aria-describedby="basic-addon3"
+              pattern="^(?:[-A-Za-z0-9]+\.)+[A-Za-z]{2,6}$"
+              required
+              [(ngModel)]="checkme"
+            />
+          </div>
+          <button (click)="checkThisURL()" class="btn btn-outline-primary mt-3">
+            Check
+          </button>
+        </div>
+        <h4>Type of product</h4>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioTypeof"
+            id="flexRadioTypeId"
+            value="50"
+            [(ngModel)]="productType"
+            (click)="hideEshop()"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            Static page
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioTypeof"
+            id="flexRadioTypeId"
+            [(ngModel)]="productType"
+            value="100"
+            (click)="hideEshop()"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            CMS (Content Management System)
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioTypeof"
+            id="flexRadioTypeId"
+            id="eshop"
+            value="150"
+            [(ngModel)]="productType"
+            (click)="eshopMethods()"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            E-Shop
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioTypeof"
+            id="flexRadioTypeId"
+            [(ngModel)]="productType"
+            value="200"
+            (click)="hideEshop()"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            Gestional
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioTypeof"
+            id="flexRadioTypeId"
+            [(ngModel)]="productType"
+            value="250"
+            (click)="hideEshop()"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            IOT (Internet of Things)
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioTypeof"
+            id="flexRadioTypeId"
+            [(ngModel)]="productType"
+            value="300"
+            (click)="hideEshop()"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            AI (Artificial Intelligence)
+          </label>
+        </div>
+      </div>
+      <div class="col m-5 px-5">
+        <h4>Manteinance</h4>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioMantain"
+            id="flexRadioMantainId1"
+            value="0"
+            [(ngModel)]="manteinance"
+            checked
+          />
+          <label class="form-check-label" for="flexRadioDefault">None</label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioMantain"
+            id="flexRadioMantainId2"
+            value="50"
+            [(ngModel)]="manteinance"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            1 Month
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioMantain"
+            id="flexRadioMantainId3"
+            value="100"
+            [(ngModel)]="manteinance"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            6 Months
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="flexRadioMantain"
+            id="flexRadioMantainId4"
+            value="150"
+            [(ngModel)]="manteinance"
+          />
+          <label class="form-check-label" for="flexRadioDefault">
+            12 Months
+          </label>
+        </div>
+        <div
+          class="container mt-5"
+          id="gimmemoney"
+          [class.invisible]="!showthis"
+        >
+          <h5>Payment methods</h5>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="10"
+              id="flexCheck"
+              [(ngModel)]="!ischecked"
+            />
+            <label class="form-check-label" for="flexCheck">Card</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="10"
+              id="flexCheck"
+              [(ngModel)]="!ischecked"
+            />
+            <label class="form-check-label" for="flexCheck"
+              >Cash on delivery</label
+            >
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="10"
+              id="flexCheck"
+              [(ngModel)]="!ischecked"
+            />
+            <label class="form-check-label" for="flexCheck">Voucher</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="10"
+              id="flexCheck"
+              [(ngModel)]="!ischecked"
+            />
+            <label class="form-check-label" for="flexCheck">Account</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row text-center m-5">
+      <div class="col">
+        <button
+          type="button"
+          (click)="priceCalculate()"
+          class="btn btn-outline-light"
+        >
+          Calculate
+        </button>
+        <br />
+        <textarea
+          id="TotText"
+          class="m-2"
+          [class.invisible]="!clicked"
+          readonly
+        >
+      It will cost {{ result }}€ </textarea
+        >
+      </div>
+    </div>
+  </div>
+</div>
