@@ -8,21 +8,27 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { PreventiveComponent } from './preventive/preventive.component';
 import { PaymentComponent } from './payment/payment.component';
+import { LoginModule } from 'src/app/login/login.module';
 
 const routes: Routes = [
-  { path: 'contact-us', component: ContactUsComponent },
-  { path: 'footer', component: FooterComponent },
-  { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  { path: 'aboutus', component: AboutUsComponent },
   { path: 'navbar', component: NavbarComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'aboutus', component: AboutUsComponent },
   { path: 'portfolio', component: PortfolioComponent },
+  { path: 'contact-us', component: ContactUsComponent },
   { path: 'preventive', component: PreventiveComponent },
   { path: 'payment', component: PaymentComponent },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('src/app/login/login.module').then((m) => m.LoginModule),
+  },
+  { path: 'footer', component: FooterComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), LoginModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
