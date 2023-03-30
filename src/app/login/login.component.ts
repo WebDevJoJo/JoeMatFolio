@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
 
 interface User {
   email: string;
@@ -23,9 +22,9 @@ export class LoginComponent {
   confirmMessage: string = '';
   passwordMessage: string = '';
   users: User[] = [
-    { email: 'mail@mail.com', password: 'pass1' },
-    { email: 'chiocciola@mail.it', password: 'pass2' },
-    { email: 'user@mail.net', password: 'pass3' },
+    { email: 'joelemelchiorre@gmail.com', password: 'JoelePWD' },
+    { email: 'chiocciola@mail.it', password: 'MattiaPWD' },
+    { email: 'user@provider.domain', password: 'User3PWD' },
   ];
 
   CheckPass() {
