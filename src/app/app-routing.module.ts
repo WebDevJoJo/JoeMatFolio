@@ -8,7 +8,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { PreventiveComponent } from './preventive/preventive.component';
 import { PaymentComponent } from './payment/payment.component';
-import { LoginModule } from 'src/app/login/login.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), LoginModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

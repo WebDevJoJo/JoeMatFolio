@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentComponent } from './payment/payment.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { LoginModule } from './login/login.module';
     FormsModule,
     NgbModule,
     HttpClientModule,
-    LoginModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],
