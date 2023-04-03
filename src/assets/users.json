@@ -1,7 +1,18 @@
 {
- "userlist":[
-    { "email": "mail@mail.com", "password": "Deviljin666"},
-    { "email": "chiocciola@mail.it", "password": "pass2" },
-    { "email": "user@mail.net", "password": "pass3" }
+  "userlist": [
+    {
+      "email": "joele.melchiorre@emeal.nttdata.com",
+      "password": "passwordjoele"
+    },
+    {
+      "email": "mattia.tozzoli@emeal.nttdata.com",
+      "password": "passwordmattia"
+    },
+    { "email": "paolo.gippa@emeal.nttdata.com", "password": "passwordpaolo" },
+    {
+      "email": "alessandro.zaza@emeal.nttdata.com",
+      "password": "passwordalessandro"
+    },
+    { "email": "lastuser@mail.domain", "password": "passworduser" }
   ]
 }

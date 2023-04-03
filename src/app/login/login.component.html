@@ -43,7 +43,7 @@
               <div class="col justify-content-start">
                 <input
                   type="password"
-                  [(ngModel)]="password"
+                  [(ngModel)]="loginpasswordts"
                   name="password"
                   #loginPassword="ngModel"
                   (ngModelChange)="CheckLogin()"
@@ -67,7 +67,7 @@
                   type="submit"
                   [disabled]="
                     !signedEmail ||
-                    !password ||
+                    !loginpasswordts ||
                     registrationMail.invalid ||
                     loginPassword.invalid ||
                     passwordMessage === 'Too short'
