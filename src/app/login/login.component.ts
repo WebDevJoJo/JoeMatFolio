@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 interface User {
   email: string;
   password: string;
 }
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +12,7 @@ interface User {
 })
 export class LoginComponent {
   newEmail: string = '';
-  password: string = '';
+  loginpasswordts: string = '';
   signedEmail: string = '';
   newPassword: string = '';
   confirmPassword: string = '';
@@ -21,12 +21,8 @@ export class LoginComponent {
   newPasswordMessagge: string = '';
   confirmMessage: string = '';
   passwordMessage: string = '';
-  users: User[] = [
-    { email: 'joelemelchiorre@gmail.com', password: 'JoelePWD' },
-    { email: 'chiocciola@mail.it', password: 'MattiaPWD' },
-    { email: 'user@provider.domain', password: 'User3PWD' },
-  ];
-
+  userlist: User[] = [];
+  constructor(private http: HttpClient) {}
   CheckPass() {
     if (this.newPassword.length < 10) {
       this.newPasswordMessagge = 'Too short';
@@ -44,19 +40,24 @@ export class LoginComponent {
   }
 
   Access() {
-    const user = this.users.find(
-      (utente) =>
-        utente.email === this.signedEmail && utente.password === this.password
-    );
-    if (user) {
-      console.log('Login success');
-    } else {
-      console.log('Login failed');
-    }
+    this.http
+      .get<{ userlist: User[] }>('../../assets/users.json')
+      .subscribe((users) => {
+        const matchedUser = users.userlist.find(
+          (user) =>
+            user.email === this.signedEmail &&
+            user.password === this.loginpasswordts
+        );
+        if (matchedUser) {
+          console.log('Login successful');
+        } else {
+          console.log('Login failed');
+        }
+      });
   }
 
   CheckLogin() {
-    if (this.password.length < 10) {
+    if (this.loginpasswordts.length < 10) {
       this.passwordMessage = 'Too short';
     } else {
       this.passwordMessage = 'Good';

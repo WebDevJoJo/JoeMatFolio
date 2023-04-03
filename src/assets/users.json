@@ -1,0 +1,7 @@
+{
+ "userlist":[
+    { "email": "mail@mail.com", "password": "Deviljin666"},
+    { "email": "chiocciola@mail.it", "password": "pass2" },
+    { "email": "user@mail.net", "password": "pass3" }
+  ]
+}

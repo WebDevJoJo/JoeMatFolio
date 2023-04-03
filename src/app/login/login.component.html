@@ -149,7 +149,7 @@
                   type="password"
                   [(ngModel)]="confirmPassword"
                   name="confirmPassword"
-                  [pattern]="password"
+                  [pattern]="loginpasswordts"
                   #confirmPwd="ngModel"
                   [ngModelOptions]="{ updateOn: 'blur' }"
                   (ngModelChange)="SamePass()"
