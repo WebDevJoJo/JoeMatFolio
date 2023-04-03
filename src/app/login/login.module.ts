@@ -3,23 +3,20 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { AuthService } from '../services/auth.service';
+import { AuthGuardService } from '../services/auth-guard.service';
 const routes: Routes = [
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('src/app/login/login.module').then((V) => V.LoginModule),
-  },
+ {
+   path: '',
+   component: LoginComponent, canActivate:[AuthGuardService]
+ }
 ];
-
 @NgModule({
-  declarations: [LoginComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    BrowserModule,
-    FormsModule,
+  declarations: [
+    LoginComponent
   ],
+  imports: [RouterModule.forChild(routes),FormsModule,CommonModule],
+  exports: [RouterModule,LoginComponent],
+  providers:[AuthService, AuthGuardService]
 })
-export class LoginModule {}
+export class LoginModule { }

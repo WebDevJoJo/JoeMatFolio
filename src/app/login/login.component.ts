@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
-
-interface User {
+import users from "src/assets/user.json";
+export interface User {
   email: string;
   password: string;
+  token?:string
 }
 
 @Component({
@@ -22,12 +22,14 @@ export class LoginComponent {
   newPasswordMessagge: string = '';
   confirmMessage: string = '';
   passwordMessage: string = '';
-  users: User[] = [
-    { email: 'mail@mail.com', password: 'pass1' },
-    { email: 'chiocciola@mail.it', password: 'pass2' },
-    { email: 'user@mail.net', password: 'pass3' },
-  ];
-
+  userMail:string="";
+  userPassword:string="";
+  userJson=users.users;
+  // users: User[] = [
+  //   { email: 'mail@mail.com', password: 'pass1'},
+  //   { email: 'chiocciola@mail.it', password: 'pass2' },
+  //   { email: 'user@mail.net', password: 'pass3' },
+  // ];
   CheckPass() {
     if (this.newPassword.length < 10) {
       this.newPasswordMessagge = 'Too short';

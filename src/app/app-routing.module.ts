@@ -19,6 +19,8 @@ const routes: Routes = [
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'preventive', component: PreventiveComponent },
   { path: 'payment', component: PaymentComponent },
+  {path: 'login',loadChildren: () => import('./login/login.module').then((m) => m.LoginModule)},
+
 ];
 
 @NgModule({
