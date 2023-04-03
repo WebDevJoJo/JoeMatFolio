@@ -6,84 +6,80 @@
         <div class="container">
           <h2 class="text-center">Login</h2>
           <p class="text-center">Enter your credentials</p>
-          <div class="container">
-            <form (ngSubmit)="Access()">
-              <div class="row">
-                <div class="col">
-                  <p class="text-end">Email</p>
+          <form class="container" (ngSubmit)="Access()">
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Email</p>
+              </div>
+              <div class="col justify-content-start">
+                <input
+                  type="email"
+                  placeholder="username@domain.domain"
+                  [(ngModel)]="signedEmail"
+                  name="signedEmail"
+                  #registrationMail="ngModel"
+                  required
+                  [email]="true"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                />
+                <div
+                  *ngIf="registrationMail.invalid && registrationMail.touched"
+                  class="text-danger"
+                >
+                  Required field
                 </div>
-                <div class="col justify-content-start">
-                  <input
-                    type="email"
-                    placeholder="username@domain.domain"
-                    [(ngModel)]="signedEmail"
-                    name="signedEmail"
-                    #registrationMail="ngModel"
-                    required
-                    [email]="true"
-                    [ngModelOptions]="{ updateOn: 'blur' }"
-                  />
-                  <div
-                    *ngIf="registrationMail.invalid && registrationMail.touched"
-                    class="text-danger"
-                  >
-                    Required field
-                  </div>
-                  <div
-                    *ngIf="registrationMail.errors?.['email']"
-                    class="text-danger"
-                  >
-                    Invalid email address
-                  </div>
+                <div
+                  *ngIf="registrationMail.errors?.['email']"
+                  class="text-danger"
+                >
+                  Invalid email address
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="container">
-            <form (ngSubmit)="Access()">
-              <div class="row">
-                <div class="col justify-content-end">
-                  <p class="text-end">Password</p>
-                </div>
-                <div class="col justify-content-start">
-                  <input
-                    type="password"
-                    [(ngModel)]="password"
-                    name="password"
-                    #loginPassword="ngModel"
-                    (ngModelChange)="CheckLogin()"
-                    required
-                  />
-                  <div
-                    *ngIf="loginPassword.invalid && loginPassword.touched"
-                    class="text-danger"
-                  >
-                    Required field
-                  </div>
-                  <div class="text-danger">
-                    {{ passwordMessage }}
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="row justify-content-center p-3">
-            <div class="col-auto">
-              <button
-                class="btn btn-primary rounded-4"
-                type="submit"
-                [disabled]="
-                  !signedEmail ||
-                  !password ||
-                  registrationMail.invalid ||
-                  loginPassword.invalid ||
-                  passwordMessage === 'Too short'
-                "
-              >
-                Log in
-              </button>
             </div>
-          </div>
+          </form>
+          <form class="container" (ngSubmit)="Access()">
+            <div class="row">
+              <div class="col justify-content-end">
+                <p class="text-end">Password</p>
+              </div>
+              <div class="col justify-content-start">
+                <input
+                  type="password"
+                  [(ngModel)]="password"
+                  name="password"
+                  #loginPassword="ngModel"
+                  (ngModelChange)="CheckLogin()"
+                  required
+                />
+                <div
+                  *ngIf="loginPassword.invalid && loginPassword.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+                <div class="text-danger">
+                  {{ passwordMessage }}
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center p-3">
+              <div class="col-auto">
+                <button
+                  class="btn btn-primary rounded-4"
+                  type="submit"
+                  [disabled]="
+                    !signedEmail ||
+                    !password ||
+                    registrationMail.invalid ||
+                    loginPassword.invalid ||
+                    passwordMessage === 'Too short'
+                  "
+                >
+                  Log in
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
 
