@@ -58,9 +58,7 @@ export class LoginComponent {
 
   CheckLogin() {
     if (this.loginpasswordts.length < 10) {
-      this.passwordMessage = 'Too short';
-    } else {
-      this.passwordMessage = 'Good';
+      this.passwordMessage = 'Invalid credentials';
     }
   }
 }

@@ -180,7 +180,7 @@
                   type="phone"
                   name="phoneNumber"
                   [(ngModel)]="phoneNumber"
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  pattern="[0-9]{10}"
                   #phone="ngModel"
                   [ngModelOptions]="{ updateOn: 'blur' }"
                   required
