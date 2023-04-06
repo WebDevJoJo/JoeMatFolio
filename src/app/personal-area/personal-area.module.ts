@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: AccessComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'preventive', component: PreventiveComponent },
-  { path: 'paymet', component: PaymentComponent },
+  { path: 'payment', component: PaymentComponent },
 ];
 
 @NgModule({
