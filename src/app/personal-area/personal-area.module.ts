@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AccessComponent } from './access/access.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PreventiveComponent } from './preventive/preventive.component';
@@ -15,8 +15,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AccessComponent, WelcomeComponent],
+  declarations: [
+    AccessComponent,
+    WelcomeComponent,
+    PreventiveComponent,
+    PaymentComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
-  exports: [FormsModule],
 })
 export class PersonalAreaModule {}
