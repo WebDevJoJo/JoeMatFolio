@@ -1,1 +1,239 @@
-<p>access works!</p>
+<div class="container-fluid my-5 p-5">
+  <h1 class="text-center my-5 p-5">Personal Area</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col border-end border-top">
+        <div class="container">
+          <h2 class="text-center">Login</h2>
+          <p class="text-center">Enter your credentials</p>
+          <form class="container" (ngSubmit)="accessResult()">
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Email</p>
+              </div>
+              <div class="col justify-content-start">
+                <input
+                  type="email"
+                  placeholder="username@domain.domain"
+                  [(ngModel)]="signedEmail"
+                  name="signedEmail"
+                  #registrationMail="ngModel"
+                  required
+                  [email]="true"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                />
+                <div
+                  *ngIf="registrationMail.invalid && registrationMail.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+                <div
+                  *ngIf="registrationMail.errors?.['email']"
+                  class="text-danger"
+                >
+                  Invalid email address
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col justify-content-end">
+                <p class="text-end">Password</p>
+              </div>
+              <div class="col justify-content-start">
+                <input
+                  type="password"
+                  [(ngModel)]="loginpasswordts"
+                  name="password"
+                  #loginPassword="ngModel"
+                  (ngModelChange)="checkLoginCredentials()"
+                  required
+                />
+                <div
+                  *ngIf="loginPassword.invalid && loginPassword.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+                <div class="text-danger">
+                  {{ passwordMessage }}
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center p-3">
+              <div class="col-auto">
+                <button
+                  class="btn btn-primary rounded-4"
+                  type="submit"
+                  [disabled]="
+                    !signedEmail ||
+                    !loginpasswordts ||
+                    registrationMail.invalid ||
+                    loginPassword.invalid ||
+                    passwordMessage === 'Too short'
+                  "
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col border-start border-top">
+        <div class="container">
+          <h2 class="text-center">Sign up</h2>
+          <p class="text-center">Create new account</p>
+          <form class="container">
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Email address</p>
+              </div>
+              <div class="col justify-content-start">
+                <input
+                  type="email"
+                  placeholder="username@domain.domain"
+                  [(ngModel)]="newEmail"
+                  #newMailAddress="ngModel"
+                  name="newEmail"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                  required
+                  [email]="true"
+                />
+                <div
+                  *ngIf="newMailAddress.invalid && newMailAddress.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+                <div
+                  *ngIf="newMailAddress.errors?.['email']"
+                  class="text-danger"
+                >
+                  Invalid email address
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Choose a password</p>
+              </div>
+              <div class="col">
+                <input
+                  type="password"
+                  [(ngModel)]="newPassword"
+                  #newPwd="ngModel"
+                  name="newPassword"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                  (ngModelChange)="checkPasswordLenght()"
+                  required
+                />
+                <div
+                  *ngIf="newPwd.invalid && newPwd.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+                <div>
+                  {{ newPasswordMessagge }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Confirm password</p>
+              </div>
+              <div class="col justify-content-start">
+                <input
+                  type="password"
+                  [(ngModel)]="confirmPassword"
+                  name="confirmPassword"
+                  [pattern]="loginpasswordts"
+                  #confirmPwd="ngModel"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                  (ngModelChange)="checkPasswordsEquality()"
+                  required
+                />
+                <div
+                  *ngIf="confirmPwd.invalid && confirmPwd.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+                <div
+                  [ngClass]="{
+                    'text-danger': confirmMessage === 'Passwords are different',
+                    'text-primary': confirmMessage === 'Passwords are equal'
+                  }"
+                >
+                  {{ confirmMessage }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Phone number</p>
+              </div>
+              <div class="col">
+                <input
+                  type="phone"
+                  name="phoneNumber"
+                  [(ngModel)]="phoneNumber"
+                  pattern="[0-9]{10}"
+                  #phone="ngModel"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                  required
+                />
+                <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+                  Number invalid
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="text-end">Address</p>
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  [(ngModel)]="address"
+                  name="address"
+                  #signAddress="ngModel"
+                  [ngModelOptions]="{ updateOn: 'blur' }"
+                  required
+                />
+                <div
+                  *ngIf="signAddress.invalid && signAddress.touched"
+                  class="text-danger"
+                >
+                  Required field
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center p-3">
+              <div class="col-auto">
+                <button
+                  [disabled]="
+                    !newEmail ||
+                    !newPassword ||
+                    !confirmPassword ||
+                    !phoneNumber ||
+                    !address ||
+                    newMailAddress.invalid ||
+                    newPasswordMessagge === 'Too short' ||
+                    confirmMessage === 'Passwords are different' ||
+                    phone.invalid
+                  "
+                  class="rounded-4 btn btn-primary"
+                >
+                  Sign up
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
