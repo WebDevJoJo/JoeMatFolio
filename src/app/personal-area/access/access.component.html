@@ -7,7 +7,7 @@
           <h2 class="text-center">Login</h2>
           <p class="text-center">Enter your credentials</p>
           <div class="container">
-            <form (ngSubmit)="Access()">
+            <form (ngSubmit)="accessResult()">
               <div class="row">
                 <div class="col">
                   <p class="text-end">Email</p>
@@ -40,7 +40,7 @@
             </form>
           </div>
           <div class="container">
-            <form (ngSubmit)="Access()">
+            <form (ngSubmit)="accessResult()">
               <div class="row">
                 <div class="col justify-content-end">
                   <p class="text-end">Password</p>
@@ -51,7 +51,7 @@
                     [(ngModel)]="password"
                     name="password"
                     #loginPassword="ngModel"
-                    (ngModelChange)="CheckLogin()"
+                    (ngModelChange)="checkLogin()"
                     required
                   />
                   <div
@@ -132,7 +132,7 @@
                   #newPwd="ngModel"
                   name="newPassword"
                   [ngModelOptions]="{ updateOn: 'blur' }"
-                  (ngModelChange)="CheckPass()"
+                  (ngModelChange)="checkPass()"
                   required
                 />
                 <div
@@ -158,7 +158,7 @@
                   [pattern]="password"
                   #confirmPwd="ngModel"
                   [ngModelOptions]="{ updateOn: 'blur' }"
-                  (ngModelChange)="SamePass()"
+                  (ngModelChange)="samePass()"
                   required
                 />
                 <div

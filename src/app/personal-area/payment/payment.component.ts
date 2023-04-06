@@ -8,6 +8,7 @@ interface Response {
   total: number;
   data: creditCard[];
 }
+
 interface creditCard {
   type: string;
   number: number;
@@ -15,6 +16,7 @@ interface creditCard {
   owner: string;
   checked: boolean;
 }
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -66,7 +68,7 @@ export class PaymentComponent implements OnInit {
     this.sortedNumberArray[index].checked =
       !this.sortedNumberArray[index].checked;
   }
-  UploadCard() {
+  uploadCard() {
     if (
       this.owner &&
       this.cardnum &&
@@ -78,15 +80,15 @@ export class PaymentComponent implements OnInit {
         this.cvv = '999';
       }
       this.message =
-        'Tu sei: ' +
+        'Your name: ' +
         this.owner +
-        ' <br> Il tuo cardnum è ' +
+        ' <br>Card number: ' +
         this.cardnum +
-        '<br> La sua data di scadenza: ' +
+        '<br>Expiration date: ' +
         this.expdata +
-        '<br> Il suo circuito: ' +
+        '<br>Card circuit: ' +
         this.cardcircuit +
-        ' <br> Il suo cvv è: ' +
+        ' <br>CVV: ' +
         this.cvv;
     } else {
       this.message = 'You cannot leave this field blank';

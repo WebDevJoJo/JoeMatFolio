@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 interface User {
   email: string;
@@ -27,7 +28,7 @@ export class AccessComponent {
     { email: 'user@provider.domain', password: 'passworduser3' },
   ];
 
-  CheckPass() {
+  checkPass() {
     if (this.newPassword.length < 10) {
       this.newPasswordMessagge = 'Too short';
     } else {
@@ -35,7 +36,7 @@ export class AccessComponent {
     }
   }
 
-  SamePass() {
+  samePass() {
     if (this.newPassword == this.confirmPassword) {
       this.confirmMessage = 'Passwords are equal';
     } else {
@@ -43,7 +44,7 @@ export class AccessComponent {
     }
   }
 
-  Access() {
+  accessResult() {
     const user = this.users.find(
       (utente) =>
         utente.email === this.signedEmail && utente.password === this.password
@@ -55,7 +56,7 @@ export class AccessComponent {
     }
   }
 
-  CheckLogin() {
+  checkLogin() {
     if (this.password.length < 10) {
       this.passwordMessage = 'Invalid credentials';
     }
