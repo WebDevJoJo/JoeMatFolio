@@ -5,12 +5,13 @@ interface User {
   email: string;
   password: string;
 }
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-access',
+  templateUrl: './access.component.html',
+  styleUrls: ['./access.component.scss'],
 })
-export class LoginComponent {
+export class AccessComponent {
   newEmail: string = '';
   loginpasswordts: string = '';
   signedEmail: string = '';
@@ -23,7 +24,7 @@ export class LoginComponent {
   passwordMessage: string = '';
   userlist: User[] = [];
   constructor(private http: HttpClient) {}
-  CheckPass() {
+  checkPasswordLenght() {
     if (this.newPassword.length < 10) {
       this.newPasswordMessagge = 'Too short';
     } else {
@@ -31,7 +32,7 @@ export class LoginComponent {
     }
   }
 
-  SamePass() {
+  checkPasswordsEquality() {
     if (this.newPassword == this.confirmPassword) {
       this.confirmMessage = 'Passwords are equal';
     } else {
@@ -39,7 +40,7 @@ export class LoginComponent {
     }
   }
 
-  Access() {
+  accessResult() {
     this.http
       .get<{ userlist: User[] }>('../../assets/users.json')
       .subscribe((users) => {
@@ -56,7 +57,7 @@ export class LoginComponent {
       });
   }
 
-  CheckLogin() {
+  checkLoginCredentials() {
     if (this.loginpasswordts.length < 10) {
       this.passwordMessage = 'Invalid credentials';
     }

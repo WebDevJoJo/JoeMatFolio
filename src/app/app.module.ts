@@ -8,10 +8,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FooterComponent } from './footer/footer.component';
-import { PreventiveComponent } from './preventive/preventive.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PaymentComponent } from './payment/payment.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -23,8 +21,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HomeComponent,
     ContactUsComponent,
-    PreventiveComponent,
-    PaymentComponent,
   ],
   imports: [
     BrowserModule,
