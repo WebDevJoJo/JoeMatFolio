@@ -19,15 +19,9 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
-  "files": [
-    "src/app/login/login.module.ts",
-    "src/assets/users.json"
-  ],  
+  "files": ["src/assets/users.json"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
