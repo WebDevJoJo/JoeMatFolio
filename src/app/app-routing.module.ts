@@ -19,16 +19,14 @@ const routes: Routes = [
   {
     path: 'access',
     loadChildren: () =>
-      import('/Projects/JoeMatFolio/src/app/access/access.module').then(
-        (m) => m.AccessModule
-      ),
+      import('./access/access.module').then((m) => m.AccessModule),
   },
   {
     path: 'personal-area',
     loadChildren: () =>
-      import(
-        '/Projects/JoeMatFolio/src/app/personal-area/personal-area.module'
-      ).then((m) => m.PersonalAreaModule),
+      import('./personal-area/personal-area.module').then(
+        (m) => m.PersonalAreaModule
+      ),
   },
   { path: 'footer', component: FooterComponent },
 ];
