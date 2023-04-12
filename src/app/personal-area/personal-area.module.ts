@@ -14,6 +14,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [WelcomeComponent, PreventiveComponent, PaymentComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  exports: [WelcomeComponent, PreventiveComponent, PaymentComponent],
 })
 export class PersonalAreaModule {}

@@ -16,11 +16,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     NavbarComponent,
+    HomeComponent,
     AboutUsComponent,
     PortfolioComponent,
-    FooterComponent,
-    HomeComponent,
     ContactUsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
