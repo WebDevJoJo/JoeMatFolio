@@ -42,7 +42,9 @@ export class AccessComponent {
 
   accessResult() {
     this.http
-      .get<{ userlist: User[] }>('../../assets/users.json')
+      .get<{ userlist: User[] }>(
+        'C:/Users/melchiorrejo/Projects/JoeMatFolio/src/assets/users.json'
+      )
       .subscribe((users) => {
         const matchedUser = users.userlist.find(
           (user) =>
