@@ -22,8 +22,14 @@ export class AccessComponent {
   newPasswordMessagge: string = '';
   confirmMessage: string = '';
   passwordMessage: string = '';
-  userlist: User[] = [];
-  constructor(private http: HttpClient) {}
+  userslist: User[] = [];
+  MyRouter: Router;
+  public matchedUser: User | undefined;
+
+  constructor(private http: HttpClient, router: Router) {
+    this.MyRouter = router;
+    this.userslist = JSON.parse(localStorage.getItem('userslist') || '[]');
+  }
   checkPasswordLenght() {
     if (this.newPassword.length < 10) {
       this.newPasswordMessagge = 'Too short';
@@ -42,17 +48,20 @@ export class AccessComponent {
 
   accessResult() {
     this.http
-      .get<{ userlist: User[] }>(
+      .get<{ userslist: User[] }>(
         'C:/Users/melchiorrejo/Projects/JoeMatFolio/src/assets/users.json'
       )
       .subscribe((users) => {
-        const matchedUser = users.userlist.find(
+        this.matchedUser = users.userslist.find(
           (user) =>
             user.email === this.signedEmail &&
             user.password === this.loginpasswordts
         );
-        if (matchedUser) {
+        if (this.matchedUser) {
           console.log('Login successful');
+          localStorage.setItem('isLogged', JSON.stringify(true));
+          localStorage.setItem('currentUser', JSON.stringify(this.matchedUser));
+          this.MyRouter.navigateByUrl('/personalarea');
         } else {
           console.log('Login failed');
         }
