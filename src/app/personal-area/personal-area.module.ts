@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PreventiveComponent } from './preventive/preventive.component';
 import { PaymentComponent } from './payment/payment.component';
+import { CompaniesComponent } from './companies/companies.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [WelcomeComponent, PreventiveComponent, PaymentComponent],
+  declarations: [WelcomeComponent, PreventiveComponent, PaymentComponent, CompaniesComponent],
   imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
   exports: [WelcomeComponent, PreventiveComponent, PaymentComponent],
 })
