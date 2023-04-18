@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Response {
@@ -60,6 +60,9 @@ interface contactAddress {
   longitude: number;
 }
 
+@Pipe({
+  name: 'searchFilter',
+})
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
