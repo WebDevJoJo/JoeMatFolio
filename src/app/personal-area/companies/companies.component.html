@@ -19,15 +19,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let companyDetails of companies; let i = index">
           <!--ngFor goes here-->
           <th scope="row"></th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{ companyDetails.name }}</td>
+          <td>{{ companyDetails.email }}</td>
+          <td>{{ companyDetails.vat }}</td>
+          <td>{{ companyDetails.phone }}</td>
+          <td>{{ companyDetails.country }}</td>
+          <td>{{ companyDetails.addresses[0].street }}</td>
         </tr>
       </tbody>
     </table>
