@@ -9,13 +9,19 @@ import { PaymentComponent } from './payment/payment.component';
 import { CompaniesComponent } from './companies/companies.component';
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent },
+  { path: 'welcome', component: WelcomeComponent },
   { path: 'preventive', component: PreventiveComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'companies', component: CompaniesComponent },
 ];
 
 @NgModule({
-  declarations: [WelcomeComponent, PreventiveComponent, PaymentComponent, CompaniesComponent],
+  declarations: [
+    WelcomeComponent,
+    PreventiveComponent,
+    PaymentComponent,
+    CompaniesComponent,
+  ],
   imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
   exports: [WelcomeComponent, PreventiveComponent, PaymentComponent],
 })
