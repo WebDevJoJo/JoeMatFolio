@@ -23,11 +23,9 @@ export class AccessComponent {
   confirmMessage: string = '';
   passwordMessage: string = '';
   userslist: User[] = [];
-  MyRouter: Router;
   public matchedUser: User | undefined;
 
-  constructor(private http: HttpClient, router: Router) {
-    this.MyRouter = router;
+  constructor(private http: HttpClient) {
     this.userslist = JSON.parse(localStorage.getItem('userslist') || '[]');
   }
   checkPasswordLenght() {
@@ -61,7 +59,6 @@ export class AccessComponent {
           console.log('Login successful');
           localStorage.setItem('isLogged', JSON.stringify(true));
           localStorage.setItem('currentUser', JSON.stringify(this.matchedUser));
-          this.MyRouter.navigateByUrl('/personalarea');
         } else {
           console.log('Login failed');
         }
