@@ -23,6 +23,11 @@ const routes: Routes = [
     CompaniesComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
-  exports: [WelcomeComponent, PreventiveComponent, PaymentComponent],
+  exports: [
+    WelcomeComponent,
+    PreventiveComponent,
+    PaymentComponent,
+    CompaniesComponent,
+  ],
 })
 export class PersonalAreaModule {}
