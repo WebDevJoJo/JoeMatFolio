@@ -90,4 +90,12 @@ export class CompaniesComponent implements OnInit {
       });
     console.log(this.companies);
   }
+
+  //searchTerm: string;
+  //
+  //searchFilter() {
+  //if (this.searchTerm) {
+  //this.filteredName = this.companies.filter(this.companies);
 }
+//}
+//}
