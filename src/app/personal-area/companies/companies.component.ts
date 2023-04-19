@@ -66,7 +66,10 @@ interface contactAddress {
   styleUrls: ['./companies.component.scss'],
 })
 export class CompaniesComponent implements OnInit {
+  searchTerm: string;
   companies: companyDetails[] = [];
+  filteredCompanies = this.companies;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -88,14 +91,16 @@ export class CompaniesComponent implements OnInit {
           });
         }
       });
-    console.log(this.companies);
   }
 
-  //searchTerm: string;
-  //
-  //searchFilter() {
-  //if (this.searchTerm) {
-  //this.filteredName = this.companies.filter(this.companies);
+  filter() {
+    if (this.searchTerm) {
+      this.filteredCompanies = this.companies.filter((item) =>
+        item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredCompanies = this.companies;
+    }
+    console.log(this.filteredCompanies);
+  }
 }
-//}
-//}
