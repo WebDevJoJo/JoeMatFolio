@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'aboutus', component: AboutUsComponent },
+  { path: 'about-us', component: AboutUsComponent },
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'contact-us', component: ContactUsComponent },
   {
