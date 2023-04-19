@@ -66,7 +66,7 @@ interface contactAddress {
   styleUrls: ['./companies.component.scss'],
 })
 export class CompaniesComponent implements OnInit {
-  searchTerm: string;
+  searchTerm: string = '';
   companies: companyDetails[] = [];
   filteredCompanies = this.companies;
 
@@ -93,7 +93,7 @@ export class CompaniesComponent implements OnInit {
       });
   }
 
-  filter() {
+  searchFilter() {
     if (this.searchTerm) {
       this.filteredCompanies = this.companies.filter((item) =>
         item.name.toLowerCase().includes(this.searchTerm.toLowerCase())

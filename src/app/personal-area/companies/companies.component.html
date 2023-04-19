@@ -17,6 +17,7 @@
                 placeholder="Search..."
                 aria-label="Search"
                 [(ngModel)]="searchTerm"
+                name="search"
                 (ngModelChange)="searchFilter()"
               />
               <button class="btn btn-outline-info" type="submit">Search</button>
