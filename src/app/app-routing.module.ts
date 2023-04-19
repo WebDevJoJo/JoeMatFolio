@@ -33,7 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AccessModule, PersonalAreaModule],
-  exports: [RouterModule, AccessModule, PersonalAreaModule],
+  imports: [RouterModule.forRoot(routes), AccessModule],
+  exports: [RouterModule, AccessModule],
 })
 export class AppRoutingModule {}

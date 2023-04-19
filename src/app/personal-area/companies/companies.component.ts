@@ -60,9 +60,6 @@ interface contactAddress {
   longitude: number;
 }
 
-@Pipe({
-  name: 'searchFilter',
-})
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
