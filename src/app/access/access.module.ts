@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AccessComponent } from './access.component';
 
-const routes: Routes = [{ path: 'access', component: AccessComponent }];
+const routes: Routes = [{ path: '', component: AccessComponent }];
 
 @NgModule({
   declarations: [AccessComponent],
