@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccessModule } from './access/access.module';
-import { PersonalAreaModule } from './personal-area/personal-area.module';
 
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'navbar', component: NavbarComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'portfolio', component: PortfolioComponent },
@@ -29,11 +24,10 @@ const routes: Routes = [
         (m) => m.PersonalAreaModule
       ),
   },
-  { path: 'footer', component: FooterComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), AccessModule],
-  exports: [RouterModule, AccessModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
