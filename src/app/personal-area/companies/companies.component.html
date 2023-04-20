@@ -20,7 +20,6 @@
                 name="search"
                 (ngModelChange)="searchFilter()"
               />
-              <button class="btn btn-outline-info" type="submit">Search</button>
             </form>
           </div>
           <div class="col"></div>
@@ -40,7 +39,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let companyDetails of companies; let i = index">
+          <tr *ngFor="let companyDetails of filteredCompanies; let i = index">
             <th scope="row"></th>
             <td>{{ companyDetails.name }}</td>
             <td>{{ companyDetails.email }}</td>
