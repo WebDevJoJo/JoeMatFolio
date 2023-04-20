@@ -9,7 +9,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { CompaniesComponent } from './companies/companies.component';
 
 const routes: Routes = [
-  { path: 'welcome', component: WelcomeComponent },
+  { path: '', component: WelcomeComponent },
   { path: 'preventive', component: PreventiveComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'companies', component: CompaniesComponent },
@@ -23,11 +23,5 @@ const routes: Routes = [
     CompaniesComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
-  exports: [
-    WelcomeComponent,
-    PreventiveComponent,
-    PaymentComponent,
-    CompaniesComponent,
-  ],
 })
 export class PersonalAreaModule {}
