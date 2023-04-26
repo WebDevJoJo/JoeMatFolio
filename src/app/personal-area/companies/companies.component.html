@@ -12,28 +12,79 @@
           <div class="col-auto">
             <form class="d-flex" role="search">
               <input
-                class="form-control me-2"
+                class="form-control m-2"
                 type="search"
                 placeholder="Name..."
                 aria-label="Search"
                 [(ngModel)]="searchName"
+                (ngModelChange)="companiesFilters()"
                 name="search"
-                (ngModelChange)="searchNameFilter()"
               />
             </form>
           </div>
           <div class="col-auto">
             <form class="d-flex" role="search">
               <input
-                class="form-control me-2"
+                class="form-control m-2"
                 type="search"
                 placeholder="Email..."
                 aria-label="Email"
                 [(ngModel)]="searchEmail"
-                name="email"
-                (ngModelChange)="searchEmailFilter()"
+                (ngModelChange)="companiesFilters()"
+                name="search"
               />
             </form>
+          </div>
+          <div class="col-auto">
+            <form class="d-flex" role="search">
+              <input
+                class="form-control m-2"
+                type="search"
+                placeholder="VAT..."
+                aria-label="VAT"
+                [(ngModel)]="searchVat"
+                (ngModelChange)="companiesFilters()"
+                name="search"
+              />
+            </form>
+          </div>
+          <div class="col-auto">
+            <form class="d-flex" role="search">
+              <input
+                class="form-control m-2"
+                type="search"
+                placeholder="Phone.."
+                aria-label="Phone"
+                [(ngModel)]="searchPhone"
+                (ngModelChange)="companiesFilters()"
+                name="search"
+              />
+            </form>
+          </div>
+          <div class="col-auto">
+            <select
+              class="form-select m-2"
+              aria-label="Countries"
+              [(ngModel)]="searchCountry"
+              (ngModelChange)="companiesFilters()"
+              name="countries"
+            >
+              <option selected></option>
+              <option *ngFor="let companyDetails of companiesList">
+                {{ companyDetails.country }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-auto">
+            <button
+              type="button"
+              class="btn btn-outline-danger m-2"
+              (click)="resetCompaniesFilters()"
+            >
+              Reset filters
+            </button>
           </div>
         </div>
       </div>

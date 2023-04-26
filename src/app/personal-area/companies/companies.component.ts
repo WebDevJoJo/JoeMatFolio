@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Response {
@@ -68,8 +68,11 @@ interface contactAddress {
 export class CompaniesComponent implements OnInit {
   searchName: string = '';
   searchEmail: string = '';
-  companies: companyDetails[] = [];
-  filteredCompanies = this.companies;
+  searchVat: string = '';
+  searchPhone: string = '';
+  searchCountry: string = '';
+  companiesList: companyDetails[] = [];
+  filteredCompanies = this.companiesList;
 
   constructor(private http: HttpClient) {}
 
@@ -78,7 +81,7 @@ export class CompaniesComponent implements OnInit {
       .get<Response>('https://fakerapi.it/api/v1/companies?_quantity=100')
       .subscribe((response: Response) => {
         for (let i = 0; i < 100; i++) {
-          this.companies.push({
+          this.companiesList.push({
             id: response.data[i].id,
             name: response.data[i].name,
             email: response.data[i].email,
@@ -94,25 +97,37 @@ export class CompaniesComponent implements OnInit {
       });
   }
 
-  searchNameFilter(): void {
-    if (this.searchName) {
-      this.filteredCompanies = this.companies.filter((item) =>
-        item.name.toLowerCase().includes(this.searchName.toLowerCase())
+  companiesFilters(): void {
+    if (
+      this.searchName ||
+      this.searchEmail ||
+      this.searchVat ||
+      this.searchPhone ||
+      this.searchCountry
+    ) {
+      this.filteredCompanies = this.companiesList.filter(
+        (item) =>
+          item.name.toLowerCase().includes(this.searchName.toLowerCase()) &&
+          item.email.toLowerCase().includes(this.searchEmail.toLowerCase()) &&
+          item.vat
+            .toString()
+            .toLowerCase()
+            .includes(this.searchVat.toLowerCase()) &&
+          item.phone.toString().includes(this.searchPhone.toLowerCase()) &&
+          item.country.includes(this.searchCountry)
       );
     } else {
-      this.filteredCompanies = this.companies;
+      this.filteredCompanies = this.companiesList;
     }
     console.log(this.filteredCompanies);
   }
 
-  searchEmailFilter(): void {
-    if (this.searchEmail) {
-      this.filteredCompanies = this.companies.filter((item) =>
-        item.email.toLowerCase().includes(this.searchEmail.toLowerCase())
-      );
-    } else {
-      this.filteredCompanies = this.companies;
-    }
-    console.log(this.filteredCompanies);
+  resetCompaniesFilters() {
+    this.searchName = '';
+    this.searchEmail = '';
+    this.searchVat = '';
+    this.searchPhone = '';
+    this.searchCountry = '';
+    this.companiesFilters();
   }
 }
