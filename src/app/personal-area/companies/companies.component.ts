@@ -66,7 +66,8 @@ interface contactAddress {
   styleUrls: ['./companies.component.scss'],
 })
 export class CompaniesComponent implements OnInit {
-  searchTerm: string = '';
+  searchName: string = '';
+  searchEmail: string = '';
   companies: companyDetails[] = [];
   filteredCompanies = this.companies;
 
@@ -93,10 +94,21 @@ export class CompaniesComponent implements OnInit {
       });
   }
 
-  searchFilter() {
-    if (this.searchTerm) {
+  searchNameFilter(): void {
+    if (this.searchName) {
       this.filteredCompanies = this.companies.filter((item) =>
-        item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        item.name.toLowerCase().includes(this.searchName.toLowerCase())
+      );
+    } else {
+      this.filteredCompanies = this.companies;
+    }
+    console.log(this.filteredCompanies);
+  }
+
+  searchEmailFilter(): void {
+    if (this.searchEmail) {
+      this.filteredCompanies = this.companies.filter((item) =>
+        item.email.toLowerCase().includes(this.searchEmail.toLowerCase())
       );
     } else {
       this.filteredCompanies = this.companies;

@@ -14,15 +14,27 @@
               <input
                 class="form-control me-2"
                 type="search"
-                placeholder="Search..."
+                placeholder="Name..."
                 aria-label="Search"
-                [(ngModel)]="searchTerm"
+                [(ngModel)]="searchName"
                 name="search"
-                (ngModelChange)="searchFilter()"
+                (ngModelChange)="searchNameFilter()"
               />
             </form>
           </div>
-          <div class="col"></div>
+          <div class="col-auto">
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Email..."
+                aria-label="Email"
+                [(ngModel)]="searchEmail"
+                name="email"
+                (ngModelChange)="searchEmailFilter()"
+              />
+            </form>
+          </div>
         </div>
       </div>
 
