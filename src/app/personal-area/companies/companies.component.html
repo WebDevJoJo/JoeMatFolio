@@ -70,7 +70,7 @@
               name="countries"
             >
               <option selected></option>
-              <option *ngFor="let companyDetails of companiesList">
+              <option *ngFor="let companyDetails of filteredCompanies">
                 {{ companyDetails.country }}
               </option>
             </select>
