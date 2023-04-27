@@ -5,23 +5,23 @@ interface Response {
   status: string;
   code: number;
   total: number;
-  data: companyDetails[];
+  data: CompanyDetails[];
 }
 
-interface companyDetails {
+interface CompanyDetails {
   id: number;
   name: string;
   email: string;
   vat: number;
   phone: number;
   country: string;
-  addresses: companyAddresses[];
+  addresses: CompanyAddresses[];
   website: string;
   image: string;
-  contact: companyContact[];
+  contact: CompanyContact[];
 }
 
-interface companyAddresses {
+interface CompanyAddresses {
   id: number;
   street: string;
   streetName: string;
@@ -34,7 +34,7 @@ interface companyAddresses {
   longitude: number;
 }
 
-interface companyContact {
+interface CompanyContact {
   id: number;
   firstname: string;
   lastname: string;
@@ -42,12 +42,12 @@ interface companyContact {
   phone: number;
   birthday: number;
   gender: string;
-  address: contactAddress[];
+  address: ContactAddress[];
   website: string;
   image: string;
 }
 
-interface contactAddress {
+interface ContactAddress {
   id: number;
   street: string;
   streetName: string;
@@ -71,8 +71,9 @@ export class CompaniesComponent implements OnInit {
   searchVat: string = '';
   searchPhone: string = '';
   searchCountry: string = '';
-  companiesList: companyDetails[] = [];
+  companiesList: CompanyDetails[] = [];
   filteredCompanies = this.companiesList;
+  countriesList: string[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -93,9 +94,16 @@ export class CompaniesComponent implements OnInit {
             image: response.data[i].image,
             contact: response.data[i].contact,
           });
+
+          this.countriesList.push(response.data[i].country);
         }
+        this.countriesList.sort();
       });
+
+    console.log(this.countriesList);
   }
+
+  countriesFilterConstructor() {}
 
   companiesFilters(): void {
     if (
@@ -119,7 +127,6 @@ export class CompaniesComponent implements OnInit {
     } else {
       this.filteredCompanies = this.companiesList;
     }
-    console.log(this.filteredCompanies);
   }
 
   resetCompaniesFilters() {
