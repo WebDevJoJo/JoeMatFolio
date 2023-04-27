@@ -97,13 +97,14 @@ export class CompaniesComponent implements OnInit {
 
           this.countriesList.push(response.data[i].country);
         }
-        this.countriesList.sort();
+        this.sortedCountriesFilterConstructor();
       });
-
-    console.log(this.countriesList);
   }
 
-  countriesFilterConstructor() {}
+  sortedCountriesFilterConstructor() {
+    this.countriesList.sort();
+    console.log(this.countriesList);
+  }
 
   companiesFilters(): void {
     if (
