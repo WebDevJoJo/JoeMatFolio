@@ -17,7 +17,6 @@
                 placeholder="Name..."
                 aria-label="Search"
                 [(ngModel)]="searchName"
-                (ngModelChange)="companiesFilters()"
                 name="search"
               />
             </form>
@@ -30,7 +29,6 @@
                 placeholder="Email..."
                 aria-label="Email"
                 [(ngModel)]="searchEmail"
-                (ngModelChange)="companiesFilters()"
                 name="search"
               />
             </form>
@@ -43,7 +41,6 @@
                 placeholder="VAT..."
                 aria-label="VAT"
                 [(ngModel)]="searchVat"
-                (ngModelChange)="companiesFilters()"
                 name="search"
               />
             </form>
@@ -56,7 +53,6 @@
                 placeholder="Phone.."
                 aria-label="Phone"
                 [(ngModel)]="searchPhone"
-                (ngModelChange)="companiesFilters()"
                 name="search"
               />
             </form>
@@ -66,17 +62,25 @@
               class="form-select m-2"
               aria-label="Countries"
               [(ngModel)]="searchCountry"
-              (ngModelChange)="companiesFilters()"
               name="countries"
             >
               <option selected></option>
-              <option *ngFor="let country of countriesList">
+              <option *ngFor="let country of countriesSortedList">
                 {{ country }}
               </option>
             </select>
           </div>
         </div>
         <div class="row">
+          <div class="col-auto">
+            <button
+              type="button"
+              class="btn btn-light m-2"
+              (click)="companiesFilters()"
+            >
+              Search
+            </button>
+          </div>
           <div class="col-auto">
             <button
               type="button"

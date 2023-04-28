@@ -74,6 +74,7 @@ export class CompaniesComponent implements OnInit {
   companiesList: CompanyDetails[] = [];
   filteredCompanies = this.companiesList;
   countriesList: string[] = [];
+  countriesSortedList: string[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -94,7 +95,6 @@ export class CompaniesComponent implements OnInit {
             image: response.data[i].image,
             contact: response.data[i].contact,
           });
-
           this.countriesList.push(response.data[i].country);
         }
         this.sortedCountriesFilterConstructor();
@@ -103,6 +103,7 @@ export class CompaniesComponent implements OnInit {
 
   sortedCountriesFilterConstructor() {
     this.countriesList.sort();
+    this.countriesSortedList = [...new Set(this.countriesList)];
     console.log(this.countriesList);
   }
 
