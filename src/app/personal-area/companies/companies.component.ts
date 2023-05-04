@@ -104,7 +104,6 @@ export class CompaniesComponent implements OnInit {
   sortedCountriesFilterConstructor() {
     this.countriesList.sort();
     this.countriesSortedList = [...new Set(this.countriesList)];
-    console.log(this.countriesList);
   }
 
   companiesFilters(): void {
