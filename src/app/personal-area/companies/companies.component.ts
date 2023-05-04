@@ -70,7 +70,7 @@ export class CompaniesComponent implements OnInit {
   searchEmail: string = '';
   searchVat: string = '';
   searchPhone: string = '';
-  searchCountry: string = '';
+  searchCountry: string = 'Countries';
   companiesList: CompanyDetails[] = [];
   filteredCompanies = this.companiesList;
   countriesList: string[] = [];
