@@ -14,6 +14,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FooterComponent } from './footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     AccessModule,
     PersonalAreaModule,
+    BrowserAnimationsModule,
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],
