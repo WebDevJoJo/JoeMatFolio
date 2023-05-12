@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Inject } from '@angular/core';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 
-interface Response {
+export interface Response {
   status: string;
   code: number;
   total: number;
   data: CompanyDetails[];
 }
 
-interface CompanyDetails {
+export interface CompanyDetails {
   id: number;
   name: string;
   email: string;
@@ -18,10 +22,10 @@ interface CompanyDetails {
   addresses: CompanyAddresses[];
   website: string;
   image: string;
-  contact: CompanyContact[];
+  contact: CompanyContact;
 }
 
-interface CompanyAddresses {
+export interface CompanyAddresses {
   id: number;
   street: string;
   streetName: string;
@@ -34,7 +38,7 @@ interface CompanyAddresses {
   longitude: number;
 }
 
-interface CompanyContact {
+export interface CompanyContact {
   id: number;
   firstname: string;
   lastname: string;
@@ -42,12 +46,12 @@ interface CompanyContact {
   phone: number;
   birthday: number;
   gender: string;
-  address: ContactAddress[];
+  address: ContactAddress;
   website: string;
   image: string;
 }
 
-interface ContactAddress {
+export interface ContactAddress {
   id: number;
   street: string;
   streetName: string;
@@ -61,44 +65,53 @@ interface ContactAddress {
 }
 
 @Component({
-  selector: 'app-companies',
-  templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.scss'],
+  selector: 'app-partner-companies',
+  templateUrl: './partner-companies.component.html',
+  styleUrls: ['./partner-companies.component.scss'],
+  providers: [MatDialog],
 })
-export class CompaniesComponent implements OnInit {
+export class PartnerCompaniesComponent implements OnInit {
+  extendedDetails: CompanyDetails[] = [];
+  companiesList: CompanyDetails[] = [];
+  countriesList: string[] = [];
+  countriesSortedList: string[] = [];
+  displayedColumns: string[] = [
+    'name',
+    'email',
+    'vat',
+    'phone',
+    'country',
+    'addresses',
+  ];
+  dataSource: CompanyDetails[] = [];
   searchName: string = '';
   searchEmail: string = '';
   searchVat: string = '';
   searchPhone: string = '';
   searchCountry: string = '';
-  companiesList: CompanyDetails[] = [];
+  selectedCountry = '';
   filteredCompanies = this.companiesList;
-  countriesList: string[] = [];
-  countriesSortedList: string[] = [];
-
-  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http
-      .get<Response>('https://fakerapi.it/api/v1/companies?_quantity=100')
-      .subscribe((response: Response) => {
-        for (let i = 0; i < 100; i++) {
-          this.companiesList.push({
-            id: response.data[i].id,
-            name: response.data[i].name,
-            email: response.data[i].email,
-            vat: response.data[i].vat,
-            phone: response.data[i].phone,
-            country: response.data[i].country,
-            addresses: response.data[i].addresses,
-            website: response.data[i].website,
-            image: response.data[i].image,
-            contact: response.data[i].contact,
-          });
-          this.countriesList.push(response.data[i].country);
-        }
-        this.sortedCountriesFilterConstructor();
-      });
+    this.populateCompaniesListCountriesList();
+  }
+
+  async fetchData(): Promise<CompanyDetails[]> {
+    const params = new URLSearchParams();
+    params.append('_quantity', '100');
+    const url = new URL('https://fakerapi.it/api/v1/companies');
+    url.search = params.toString();
+    const response = await fetch(url.toString());
+    const data = await response.json();
+    return data.data as CompanyDetails[];
+  }
+
+  async populateCompaniesListCountriesList(): Promise<void> {
+    const companiesList = await this.fetchData();
+    this.companiesList.push(...companiesList);
+    this.countriesList = companiesList.map((company) => company.country);
+    this.dataSource = companiesList;
+    this.sortedCountriesFilterConstructor();
   }
 
   sortedCountriesFilterConstructor() {
@@ -121,13 +134,17 @@ export class CompaniesComponent implements OnInit {
           item.vat
             .toString()
             .toLowerCase()
-            .includes(this.searchVat.toLowerCase()) &&
-          item.phone.toString().includes(this.searchPhone.toLowerCase()) &&
+            .includes(this.searchVat.toString().toLowerCase()) &&
+          item.phone
+            .toString()
+            .toLowerCase()
+            .includes(this.searchPhone.toString().toLowerCase()) &&
           item.country.includes(this.searchCountry)
       );
     } else {
       this.filteredCompanies = this.companiesList;
     }
+    this.dataSource = this.filteredCompanies;
   }
 
   resetCompaniesFilters() {
@@ -137,5 +154,31 @@ export class CompaniesComponent implements OnInit {
     this.searchPhone = '';
     this.searchCountry = '';
     this.companiesFilters();
+  }
+
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(row: CompanyDetails): void {
+    const dialogRef = this.dialog.open(DialogCompany, {
+      data: row,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Dialog closed');
+    });
+  }
+}
+
+@Component({
+  selector: 'dialog-company',
+  templateUrl: 'dialog-company.html',
+})
+export class DialogCompany {
+  constructor(
+    public dialogRef: MatDialogRef<DialogCompany>,
+    @Inject(MAT_DIALOG_DATA) public data: CompanyDetails
+  ) {}
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }
