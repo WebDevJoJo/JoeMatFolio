@@ -1,124 +1,116 @@
-<div class="container-fluid my-5 p-5">
-  <h1 class="text-center my-5 p-5">Partner companies</h1>
-  <div class="container">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A animi, iusto,
-      officiis, iure minima velit aliquid magni numquam reiciendis ipsam cumque
-      debitis sequi ullam sint perspiciatis facilis obcaecati. Doloribus, modi!
-    </p>
-    <div class="container">
-      <div class="container mt-5 mb-3">
-        <div class="row">
-          <div class="col-auto">
-            <form class="d-flex" role="search">
-              <input
-                class="form-control m-2"
-                type="search"
-                placeholder="Name..."
-                aria-label="Search"
-                [(ngModel)]="searchName"
-                name="search"
-              />
-            </form>
-          </div>
-          <div class="col-auto">
-            <form class="d-flex" role="search">
-              <input
-                class="form-control m-2"
-                type="search"
-                placeholder="Email..."
-                aria-label="Email"
-                [(ngModel)]="searchEmail"
-                name="search"
-              />
-            </form>
-          </div>
-          <div class="col-auto">
-            <form class="d-flex" role="search">
-              <input
-                class="form-control m-2"
-                type="search"
-                pattern="[0-9]"
-                placeholder="VAT..."
-                aria-label="VAT"
-                [(ngModel)]="searchVat"
-                name="search"
-              />
-            </form>
-          </div>
-          <div class="col-auto">
-            <form class="d-flex" role="search">
-              <input
-                class="form-control m-2"
-                type="search"
-                pattern="[0-9]"
-                placeholder="Phone.."
-                aria-label="Phone"
-                [(ngModel)]="searchPhone"
-                name="search"
-              />
-            </form>
-          </div>
-          <div class="col-auto">
-            <select
-              class="form-select m-2"
-              aria-label="Countries"
-              [(ngModel)]="searchCountry"
-              name="countries"
-            >
-              <option selected></option>
-              <option *ngFor="let country of countriesSortedList">
-                {{ country }}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-auto">
-            <button
-              type="button"
-              class="btn btn-light m-2"
-              (click)="companiesFilters()"
-            >
-              Search
-            </button>
-          </div>
-          <div class="col-auto">
-            <button
-              type="button"
-              class="btn btn-outline-danger m-2"
-              (click)="resetCompaniesFilters()"
-            >
-              Reset filters
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <table class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Vat</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Country</th>
-            <th scope="col">Addresses</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let companyDetails of filteredCompanies; let i = index">
-            <th scope="row"></th>
-            <td>{{ companyDetails.name }}</td>
-            <td>{{ companyDetails.email }}</td>
-            <td>{{ companyDetails.vat }}</td>
-            <td>{{ companyDetails.phone }}</td>
-            <td>{{ companyDetails.country }}</td>
-            <td>{{ companyDetails.addresses[0].street }}</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container text-center">
+  <h1>Partner companies</h1>
+  <h3>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, eum.
+    Reiciendis quibusdam iste dolore, corporis dolores deserunt odio vitae
+    laudantium eligendi inventore aspernatur, dignissimos vero minus quos
+    delectus molestiae sit?
+  </h3>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <mat-form-field appearance="fill" class="mx-2">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="searchName" />
+      </mat-form-field>
+    </div>
+    <div class="col-auto">
+      <mat-form-field appearance="fill" class="mx-2">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="searchEmail" />
+      </mat-form-field>
+    </div>
+    <div class="col-auto">
+      <mat-form-field appearance="fill" class="mx-2">
+        <mat-label>VAT</mat-label>
+        <input matInput type="number" [(ngModel)]="searchVat" />
+      </mat-form-field>
+    </div>
+    <div class="col-auto">
+      <mat-form-field appearance="fill" class="mx-2">
+        <mat-label>Phone</mat-label>
+        <input matInput type="number" [(ngModel)]="searchPhone" />
+      </mat-form-field>
+    </div>
+    <div class="col-auto">
+      <mat-form-field appearance="fill" class="mx-2">
+        <mat-label>Coutry</mat-label>
+        <mat-select [(value)]="selectedCountry" [(ngModel)]="searchCountry">
+          <mat-option>None</mat-option>
+          <mat-option
+            *ngFor="let country of countriesSortedList"
+            [value]="country"
+            >{{ country }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <button
+      mat-fab
+      extended
+      color="primary"
+      class="mx-2"
+      (click)="companiesFilters()"
+    >
+      <mat-icon>search</mat-icon>
+      Go!
+    </button>
+    <button
+      mat-fab
+      extended
+      color="warn"
+      class="mx-2"
+      (click)="resetCompaniesFilters()"
+    >
+      Reset <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z4 mt-4">
+    <!--Name column-->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Company name</mat-header-cell>
+      <mat-cell *matCellDef="let company"> {{ company.name }} </mat-cell>
+    </ng-container>
+
+    <!--Email column-->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let company"> {{ company.email }} </mat-cell>
+    </ng-container>
+
+    <!--VAT column-->
+    <ng-container matColumnDef="vat">
+      <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
+      <mat-cell *matCellDef="let company"> {{ company.vat }} </mat-cell>
+    </ng-container>
+
+    <!--Phone column-->
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+      <mat-cell *matCellDef="let company"> {{ company.phone }} </mat-cell>
+    </ng-container>
+
+    <!--Country column-->
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
+      <mat-cell *matCellDef="let company"> {{ company.country }} </mat-cell>
+    </ng-container>
+
+    <!--Addresses column-->
+    <ng-container matColumnDef="addresses">
+      <mat-header-cell *matHeaderCellDef>Addresses</mat-header-cell>
+      <mat-cell *matCellDef="let company">
+        {{ company.addresses[0].street }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="openDialog(row)"
+    ></mat-row>
+  </mat-table>
 </div>
