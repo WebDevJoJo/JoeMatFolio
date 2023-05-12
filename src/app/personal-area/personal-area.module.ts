@@ -14,24 +14,24 @@ import { MatListModule } from '@angular/material/list';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PreventiveComponent } from './preventive/preventive.component';
-import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import {
   DialogCompany,
   PartnerCompaniesComponent,
-} from './partner-companies/partner-companies.component';
+} from './companies/companies.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'preventive', component: PreventiveComponent },
-  { path: 'payment', component: PaymentMethodsComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'companies', component: PartnerCompaniesComponent },
 ];
 
 @NgModule({
-  declarations: [
+  declaration: [
     PreventiveComponent,
-    PaymentMethodsComponent,
+    PaymentComponent,
     PartnerCompaniesComponent,
     WelcomeComponent,
     DialogCompany,
